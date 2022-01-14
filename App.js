@@ -1,20 +1,30 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import * as React from 'react';
+import { Text, View } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import FirstPage from './FirstPage';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import MyTab from './MyTab';
+import Notifications from './Notifications';
+import New from './new';
+import HiPage from './HiPage';
 
-export default function App() {
+
+const Stack = createNativeStackNavigator();
+function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator >
+
+      <Stack.Screen name="FirstPage" component={FirstPage} options={{headerShown: false, }} />
+      <Stack.Screen name="Notification" component={Notifications} options={{headerShown: false, }} />
+      <Stack.Screen name='New' component={New}/>
+      <Stack.Screen name='HiPage' component={HiPage}/>
+
+
+      <Stack.Screen name='MyTab' component={MyTab} options={{headerShown: false, }}/>
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default App;
